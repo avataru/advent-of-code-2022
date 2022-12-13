@@ -1,14 +1,19 @@
 import math
+import numpy
+from collections import Counter
 
 # sources:
 #   https://github.com/iKevinY/advent/blob/master/2022/utils.py
+
+def cmp3(a, b):
+    """Three-way comparison aka spaceship operator (<=>)"""
+    return [0, 1, -1][numpy.sign(a - b)]
 
 def gcd(a, b):
     """Compute the greatest common divisor of a and b"""
     while b > 0:
         a, b = b, a % b
     return a
-
 
 def lcm(a, b):
     """Compute the lowest common multiple of a and b"""
