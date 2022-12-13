@@ -1,28 +1,31 @@
 import sys
 sys.path.append('../')
-from utils import cmp3
 from functools import cmp_to_key
 
 def compare(left, right) -> int:
-    if isinstance(left, int) and isinstance(right, int):
-        return cmp3(left, right)
+    if not isinstance(left, list):
+        left = [left]
 
-    left = [left] if isinstance(left, int) else left
-    right = [right] if isinstance(right, int) else right
+    if not isinstance(right, list):
+        right = [right]
 
-    while len(left) > 0 and len(right) > 0:
-        c = compare(left.pop(0), right.pop(0))
-        if c != 0:
-            return c
+    for i in range(min(len(left), len(right))):
+        if isinstance(left[i], list) or isinstance(right[i], list):
+            result = compare(left[i], right[i])
+            if result != 0:
+                return result
+        elif left[i] < right[i]:
+            return -1
+        elif left[i] > right[i]:
+            return 1
 
-    if len(left) == 0 and len(right) == 0:
-        return 0
-    elif len(left) == 0:
+    if len(left) < len(right):
         return -1
-    elif len(right) == 0:
+
+    if len(left) > len(right):
         return 1
 
-    raise Exception(f'Invalid input: left = {left} and right = {right}')
+    return 0
 
 def part_one(data: str) -> str:
     packets = [[eval(v) for v in pair.splitlines()] for pair in data.split('\n\n')]
