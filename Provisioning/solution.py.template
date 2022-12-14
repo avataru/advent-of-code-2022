@@ -1,11 +1,11 @@
 import sys
 sys.path.append('../')
 
-def part_one(data: list) -> str:
+def part_one(data: list):
     # TO DO
     return ''
 
-def part_two(data: list) -> str:
+def part_two(data: list):
     # TO DO
     return ''
 

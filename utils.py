@@ -5,6 +5,16 @@ from collections import Counter
 # sources:
 #   https://github.com/iKevinY/advent/blob/master/2022/utils.py
 
+def rolling(list, size: int):
+    """Return list elements using a rolling window"""
+    for i in range(0, len(list) - (size - 1)):
+        yield list[i:i + size]
+
+def chunks(list, size: int):
+    """Split list in equally sized chunks"""
+    for i in range(0, len(list), size):
+        yield list[i:i + size]
+
 def cmp3(a, b):
     """Three-way comparison aka spaceship operator (<=>)"""
     return [0, 1, -1][numpy.sign(a - b)]
